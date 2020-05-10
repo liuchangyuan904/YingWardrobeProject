@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_90">90dp</dimen>
+    <dimen name="tab_padding_size">2.5dp</dimen>
+    <dimen name="activity_main_tab_bottom_bar_padding_top">5dp</dimen>
+    <dimen name="common_little_text_size">12sp</dimen>
+</resources>

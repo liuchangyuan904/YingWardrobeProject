@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">个人衣橱管理APP</string>
+    <string name="tab_wardrobe">衣橱</string>
+    <string name="tab_wear_diary">穿搭日记</string>
+    <string name="tab_statistics">统计</string>
+    <string name="tab_mine">我的</string>
 </resources>

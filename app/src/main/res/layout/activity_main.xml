@@ -1,18 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/colorWhite"
+    tools:context=".activity.MainActivity">
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/main_fragment_content"
+        android:layout_above="@+id/layout_bottome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/layout_bottome"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:layout_height="@dimen/dp_50">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_wardrobe"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/tab_main_bottom_item_bg"
+                android:clickable="false"
+                android:drawablePadding="@dimen/tab_padding_size"
+                android:drawableTop="@drawable/tabicon_bg_wardrobe"
+                android:paddingTop="@dimen/activity_main_tab_bottom_bar_padding_top"
+                android:scaleType="matrix"
+                android:text="@string/tab_wardrobe"
+                android:textColor="@color/tab_main_botton_text_color"
+                android:textSize="@dimen/common_little_text_size" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_wear_diary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/tab_main_bottom_item_bg"
+                android:clickable="false"
+                android:drawablePadding="@dimen/tab_padding_size"
+                android:drawableTop="@drawable/tabicon_bg_wear_diary"
+                android:paddingTop="@dimen/activity_main_tab_bottom_bar_padding_top"
+                android:scaleType="matrix"
+                android:text="@string/tab_wear_diary"
+                android:textColor="@color/tab_main_botton_text_color"
+                android:textSize="@dimen/common_little_text_size" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_statistics"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/tab_main_bottom_item_bg"
+                android:clickable="false"
+                android:drawablePadding="@dimen/tab_padding_size"
+                android:drawableTop="@drawable/tabicon_bg_statistics"
+                android:paddingTop="@dimen/activity_main_tab_bottom_bar_padding_top"
+                android:scaleType="matrix"
+                android:text="@string/tab_statistics"
+                android:textColor="@color/tab_main_botton_text_color"
+                android:textSize="@dimen/common_little_text_size" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <Button
+                android:id="@+id/btn_mine"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:background="@drawable/tab_main_bottom_item_bg"
+                android:clickable="false"
+                android:drawablePadding="@dimen/tab_padding_size"
+                android:drawableTop="@drawable/tabicon_bg_mine"
+                android:paddingTop="@dimen/activity_main_tab_bottom_bar_padding_top"
+                android:scaleType="matrix"
+                android:text="@string/tab_mine"
+                android:textColor="@color/tab_main_botton_text_color"
+                android:textSize="@dimen/common_little_text_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
