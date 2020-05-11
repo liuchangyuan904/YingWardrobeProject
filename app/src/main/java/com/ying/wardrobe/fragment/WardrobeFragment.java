@@ -15,7 +15,7 @@ public class WardrobeFragment extends BaseFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_wear_diary;
+        return R.layout.fragment_wardrobe;
     }
 
     @Override

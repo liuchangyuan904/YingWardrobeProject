@@ -14,8 +14,76 @@
         app:mid_txt="衣橱"
         app:mid_txt_color="@color/colorWhite"
         app:show_left="false"></com.ying.wardrobe.view.CommonHead>
-    <TextView
-        android:layout_width="match_parent"
-        android:text="这是衣橱页面"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:layout_width="@dimen/dp_90"
+        android:paddingBottom="@dimen/dp_10"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="短袖"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15sp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_20"
+            android:background="@drawable/common_white_btn_bg"
+            android:textColor="@color/title_bg_color"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:text="长裤"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15sp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_20"
+            android:background="@drawable/common_blue_btn_bg"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:text="外套"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15sp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_20"
+            android:background="@drawable/common_blue_btn_bg"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:text="裙子"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15sp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_20"
+            android:background="@drawable/common_blue_btn_bg"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="@color/colorWhite"
+            android:layout_width="wrap_content"
+            android:text="帽子"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_gravity="center_horizontal"
+            android:textSize="15sp"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_20"
+            android:background="@drawable/common_blue_btn_bg"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

@@ -15,4 +15,5 @@
     <dimen name="dp_60">60dp</dimen>
     <dimen name="dp_90">90dp</dimen>
     <dimen name="dp_120">120dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
 </resources>
