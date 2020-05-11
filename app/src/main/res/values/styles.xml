@@ -8,4 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <!--通用头部布局-->
+    <declare-styleable name="CommonHead">
+        <attr name="mid_txt" format="string|reference" />
+        <attr name="mid_txt_color" format="integer|reference" />
+        <attr name="leftImg" format="integer|reference" />
+        <attr name="rightImg" format="integer|reference" />
+        <attr name="rightTxt" format="string|reference" />
+        <attr name="rightTxtColor" format="integer|reference" />
+        <attr name="rightTxtSize" format="integer|reference" />
+        <attr name="show_right" format="boolean" />
+        <attr name="show_left" format="boolean" />
+
+        <attr name="bg_color" format="integer|reference" />
+
+    </declare-styleable>
+
 </resources>

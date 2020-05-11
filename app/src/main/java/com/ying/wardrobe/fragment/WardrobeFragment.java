@@ -12,12 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class WardrobeFragment extends BaseFragment {
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_wardrobe, container, false);
-        initView(view);
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_wear_diary;
+    }
+
+    @Override
+    protected void initView(View view, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     /**

@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.ying.wardrobe.view.CommonHead
+        android:id="@+id/title_bar"
+        android:paddingTop="@dimen/dp_30"
+        android:background="@color/title_bg_color"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:leftImg="@mipmap/icon_backarrow"
+        app:mid_txt="衣橱"
+        app:mid_txt_color="@color/colorWhite"
+        app:show_left="false"></com.ying.wardrobe.view.CommonHead>
     <TextView
         android:layout_width="match_parent"
         android:text="这是衣橱页面"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
 </LinearLayout>

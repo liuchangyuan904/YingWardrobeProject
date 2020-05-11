@@ -3,6 +3,8 @@ package com.ying.wardrobe.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import okhttp3.Call;
+import okhttp3.Response;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,8 @@ import com.ying.wardrobe.fragment.MineFragment;
 import com.ying.wardrobe.fragment.StatisticsFragment;
 import com.ying.wardrobe.fragment.WardrobeFragment;
 import com.ying.wardrobe.fragment.WearDiaryFragment;
+import com.ying.wardrobe.okhttp.OkHttpUtils;
+import com.ying.wardrobe.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +26,7 @@ import java.util.List;
 public class MainActivity extends BaseActivity implements View.OnClickListener{
     private static final String TAG = "MainActivity";
     // 当前fragment的index
-    private int currentTabIndex;
+    private int currentTabIndex=1;
     private List<TabHolder> tabList;
     public static Fragment currentFragment;
     private WardrobeFragment wardrobeFragment;
@@ -30,15 +34,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private StatisticsFragment statisticsFragment;
     private MineFragment mineFragment;
     private Button btn_wardrobe,btn_wear_diary,btn_statistics,btn_mine;
+    private int currentPosition=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         initView();
         tabList = new ArrayList<>();
+        wardrobeFragment=new WardrobeFragment();
+        addOneTabItem(tabList, R.id.btn_wardrobe, wardrobeFragment);
+        setTabSelected(currentPosition);
+
     }
 
-    private void initView() {
+    @Override
+    protected int initLayout() {
+        return R.layout.activity_main;
+    }
+    @Override
+    protected void initView() {
         btn_wardrobe=findViewById(R.id.btn_wardrobe);
         btn_wear_diary=findViewById(R.id.btn_wear_diary);
         btn_statistics=findViewById(R.id.btn_statistics);
@@ -47,6 +61,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         btn_wear_diary.setOnClickListener(this);
         btn_statistics.setOnClickListener(this);
         btn_mine.setOnClickListener(this);
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     //添加一个TabItem
@@ -121,6 +140,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 setTabSelected(findTabIdxByTabBtnId(view.getId()));
                 break;
             case R.id.btn_mine:
+                OkHttpUtils.get()
+                        .url("https://www.baidu.com")
+                        .build()
+                        .execute(new Callback() {
+                            @Override
+                            public Object parseNetworkResponse(Response response, int id) throws Exception {
+                                return null;
+                            }
+
+                            @Override
+                            public void onError(Call call, Exception e, int id) {
+                                Log.d(TAG, "onError: "+e.toString());
+                            }
+
+                            @Override
+                            public void onResponse(Object response, int id) {
+                            }
+                        });
                 if (mineFragment==null){
                     mineFragment=new MineFragment();
                     addOneTabItem(tabList, R.id.btn_mine, mineFragment);

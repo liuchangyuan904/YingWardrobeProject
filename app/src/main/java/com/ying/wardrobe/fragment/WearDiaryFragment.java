@@ -6,15 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ying.wardrobe.BaseFragment;
+import com.ying.wardrobe.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class WearDiaryFragment extends BaseFragment {
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.fragment_wear_diary;
+    }
+
+    @Override
+    protected void initView(View view, Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    /**
+     * 初始化View
+     * @param view
+     */
+    private void initView(View view) {
 
     }
 }

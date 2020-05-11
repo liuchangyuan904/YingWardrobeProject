@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="dp_50">50dp</dimen>
-    <dimen name="dp_90">90dp</dimen>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
     <dimen name="tab_padding_size">2.5dp</dimen>
-    <dimen name="activity_main_tab_bottom_bar_padding_top">5dp</dimen>
+    <dimen name="activity_main_tab_bottom_bar_padding_top" tools:ignore="MissingDefaultResource">5dp</dimen>
     <dimen name="common_little_text_size">12sp</dimen>
+   /********************************字体大小*****************************/
+    <dimen name="title_size">18sp</dimen>
+
+
+    /********************************控件大小*****************************/
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_30">30dp</dimen>
+    <dimen name="dp_50">50dp</dimen>
+    <dimen name="dp_60">60dp</dimen>
+    <dimen name="dp_90">90dp</dimen>
+    <dimen name="dp_120">120dp</dimen>
 </resources>
