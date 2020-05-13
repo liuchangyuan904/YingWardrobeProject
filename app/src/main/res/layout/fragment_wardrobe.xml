@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -15,6 +15,7 @@
         app:mid_txt_color="@color/colorWhite"
         app:show_left="false"></com.ying.wardrobe.view.CommonHead>
     <LinearLayout
+        android:layout_below="@+id/title_bar"
         android:background="@color/colorAccent"
         android:orientation="vertical"
         android:layout_width="@dimen/dp_90"
@@ -86,4 +87,5 @@
             android:background="@drawable/common_blue_btn_bg"
             android:layout_height="wrap_content" />
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

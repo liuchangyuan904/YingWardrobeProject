@@ -1,15 +1,12 @@
 package com.ying.wardrobe.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import okhttp3.Call;
-import okhttp3.Response;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.ying.wardrobe.BaseActivity;
 import com.ying.wardrobe.R;
@@ -17,8 +14,6 @@ import com.ying.wardrobe.fragment.MineFragment;
 import com.ying.wardrobe.fragment.StatisticsFragment;
 import com.ying.wardrobe.fragment.WardrobeFragment;
 import com.ying.wardrobe.fragment.WearDiaryFragment;
-import com.ying.wardrobe.okhttp.OkHttpUtils;
-import com.ying.wardrobe.okhttp.callback.Callback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,24 +135,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 setTabSelected(findTabIdxByTabBtnId(view.getId()));
                 break;
             case R.id.btn_mine:
-                OkHttpUtils.get()
-                        .url("https://www.baidu.com")
-                        .build()
-                        .execute(new Callback() {
-                            @Override
-                            public Object parseNetworkResponse(Response response, int id) throws Exception {
-                                return null;
-                            }
-
-                            @Override
-                            public void onError(Call call, Exception e, int id) {
-                                Log.d(TAG, "onError: "+e.toString());
-                            }
-
-                            @Override
-                            public void onResponse(Object response, int id) {
-                            }
-                        });
                 if (mineFragment==null){
                     mineFragment=new MineFragment();
                     addOneTabItem(tabList, R.id.btn_mine, mineFragment);
