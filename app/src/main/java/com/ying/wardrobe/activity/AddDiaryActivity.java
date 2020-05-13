@@ -22,7 +22,7 @@ import androidx.annotation.RequiresApi;
 public class AddDiaryActivity extends BaseActivity {
     private CommonHead title_bar;
     private TextView dateTextView;
-    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月DD");
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
     private LocationManager locationManager;
     private String provider;
     private Location currentlocation;
@@ -43,6 +43,7 @@ public class AddDiaryActivity extends BaseActivity {
         });
         dateTextView = findViewById(R.id.dateTextView);
         Date date = new Date();
+
         dateTextView.setText(simpleDateFormat.format(date));
     }
 
