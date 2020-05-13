@@ -13,7 +13,7 @@ import java.util.logging.SimpleFormatter;
 public class AddDiaryActivity extends BaseActivity {
     private CommonHead title_bar;
     private TextView dateTextView;
-    private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yy年MM月DD");
+    private SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月DD");
     @Override
     protected int initLayout() {
         return R.layout.activity_add_diary;
