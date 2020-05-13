@@ -1,5 +1,7 @@
 package com.ying.wardrobe;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +9,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-
-import android.app.Activity;
-import android.content.Context;
 
 /**
  * Created by Administrator on 2016/5/31 0031.
@@ -23,7 +21,6 @@ import android.content.Context;
 public abstract class BaseFragment extends Fragment {
 
     protected Activity mActivity;
-
     /**
      * 获得全局的，防止使用getActivity()为空
      * @param context
@@ -42,7 +39,6 @@ public abstract class BaseFragment extends Fragment {
         View view = LayoutInflater.from(mActivity)
                 .inflate(getLayoutId(), container, false);
         initView(view, savedInstanceState);
-
         return view;
     }
 
@@ -69,4 +65,9 @@ public abstract class BaseFragment extends Fragment {
      * 执行数据的加载
      */
     protected abstract void initData();
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

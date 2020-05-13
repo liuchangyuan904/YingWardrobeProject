@@ -1,21 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <com.ying.wardrobe.view.CommonHead
         android:id="@+id/title_bar"
-        android:paddingTop="@dimen/dp_30"
-        android:background="@color/title_bg_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/title_bg_color"
+        android:paddingTop="@dimen/dp_30"
         app:leftImg="@mipmap/icon_backarrow"
         app:mid_txt="我的"
-        app:mid_txt_color="@color/colorWhite"
+        app:mid_txt_color="@color/colorAccent"
         app:show_left="false"></com.ying.wardrobe.view.CommonHead>
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:text="这是我的页面"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/userNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@color/colorAccent"
+            android:padding="10dp"
+            android:text="用户名："
+            android:textColor="@color/colorWhite"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/userNameTextView"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userNameTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:text="身体指数"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/ageTextView"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userNameTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:text="年龄"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/heightTextView"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userNameTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:text="身高"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/weightTextView"
+                android:layout_gravity="center"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userNameTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:padding="10dp"
+                android:text="体重"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/editTextView"
+                android:gravity="center"
+                android:layout_width="150dp"
+                android:layout_gravity="center"
+                android:background="@drawable/common_blue_btn_bg"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/userNameTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:padding="10dp"
+                android:text="编辑"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

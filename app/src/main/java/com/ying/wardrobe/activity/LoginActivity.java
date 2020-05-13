@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
@@ -17,6 +18,8 @@ import com.yanzhenjie.nohttp.rest.RequestQueue;
 import com.yanzhenjie.nohttp.rest.Response;
 import com.ying.wardrobe.BaseActivity;
 import com.ying.wardrobe.R;
+import com.ying.wardrobe.entity.UserEntity;
+import com.ying.wardrobe.util.Constant;
 import com.ying.wardrobe.util.HttpUtil;
 
 import org.json.JSONException;
@@ -54,15 +57,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     /**
      * 注册/登录
+     *
      * @param username
      * @param password
      */
     private void tryToRegister(final String username, final String password, final boolean isLogin) {
         String postUrl;
-        if (isLogin){
-            postUrl= HttpUtil.HOST + "api/user/login";
-        }else {
-            postUrl= HttpUtil.HOST + "api/user/register";
+        if (isLogin) {
+            postUrl = HttpUtil.HOST + "api/user/login";
+        } else {
+            postUrl = HttpUtil.HOST + "api/user/register";
         }
 
         //1.创建一个队列
@@ -82,14 +86,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
             @Override
             public void onSucceed(int what, Response<JSONObject> response) {
-                Log.d(TAG, "onSucceed: "+response.toString());
+                Log.d(TAG, "onSucceed: " + response.toString());
                 JSONObject res = response.get();
                 try {
                     if (res.getInt("status") == 0) {
                         JSONObject data = res.getJSONObject("data");
-                        if (isLogin){
+                        Gson gson = new Gson();
+                        Constant.currentUserEntity = gson.fromJson(res.toString(), UserEntity.class);
+                        if (isLogin) {
                             Toast.makeText(getApplicationContext(), "欢迎登录：" + username, Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             Toast.makeText(getApplicationContext(), "成功注册用户：" + username, Toast.LENGTH_SHORT).show();
                         }
                         //跳转到商品购买页面
@@ -122,10 +128,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 if (TextUtils.isEmpty(userEditText.getText().toString().trim()) || TextUtils.isEmpty(passwordEditText.getText().toString().trim())) {
                     Toast.makeText(this, "账号密码不要忘记输入哦！", Toast.LENGTH_LONG).show();
                 }
-                tryToRegister(userEditText.getText().toString().trim(), passwordEditText.getText().toString().trim(),false);
+                tryToRegister(userEditText.getText().toString().trim(), passwordEditText.getText().toString().trim(), false);
                 break;
             case R.id.loginTextView:
-                tryToRegister(userEditText.getText().toString().trim(), passwordEditText.getText().toString().trim(),true);
+                tryToRegister(userEditText.getText().toString().trim(), passwordEditText.getText().toString().trim(), true);
                 break;
         }
     }
