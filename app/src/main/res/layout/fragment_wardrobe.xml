@@ -26,6 +26,7 @@
         android:paddingBottom="@dimen/dp_10">
 
         <TextView
+            android:id="@+id/duanxiuTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -40,6 +41,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/changkuTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -54,6 +56,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/waitaoTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -68,6 +71,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/qunziTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -82,6 +86,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/maoziTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -117,5 +122,11 @@
             android:text="添加"
             android:textColor="@color/colorWhite"
             android:textSize="15sp" />
+        <ListView
+            android:id="@+id/listView"
+            android:scrollbars="none"
+            android:listSelector="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
     </LinearLayout>
 </RelativeLayout>

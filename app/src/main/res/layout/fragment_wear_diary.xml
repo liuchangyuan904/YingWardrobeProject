@@ -14,5 +14,10 @@
         app:mid_txt="穿搭日记"
         app:mid_txt_color="@color/colorWhite"
         app:show_left="false"></com.ying.wardrobe.view.CommonHead>
-
+    <ListView
+        android:id="@+id/listView"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 </LinearLayout>
