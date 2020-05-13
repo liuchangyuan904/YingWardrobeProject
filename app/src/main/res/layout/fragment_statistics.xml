@@ -208,7 +208,7 @@
                         android:src="@drawable/tabicon_bg_mine"
                         android:layout_width="90dp"
                         android:layout_height="90dp" />
-                </>
+                </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -229,7 +229,7 @@
                         android:src="@drawable/tabicon_bg_mine"
                         android:layout_width="90dp"
                         android:layout_height="90dp" />
-                </>
+                </RelativeLayout>
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
@@ -250,7 +250,7 @@
                         android:src="@drawable/tabicon_bg_mine"
                         android:layout_width="90dp"
                         android:layout_height="90dp" />
-                </>
+                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
 

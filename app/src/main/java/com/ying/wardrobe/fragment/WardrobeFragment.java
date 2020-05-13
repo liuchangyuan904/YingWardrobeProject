@@ -59,6 +59,7 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
         changkuTextView = view.findViewById(R.id.changkuTextView);
         qunziTextView = view.findViewById(R.id.qunziTextView);
         maoziTextView = view.findViewById(R.id.maoziTextView);
+        listView = view.findViewById(R.id.listView);
         addYifu.setOnClickListener(this);
         duanxiuTextView.setOnClickListener(this);
         waitaoTextView.setOnClickListener(this);
@@ -131,19 +132,64 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
                         .selectPicture(false, 200, 200, 1, 1);
                 break;
             case R.id.duanxiuTextView:
-
+                duanxiuTextView.setBackgroundResource(R.drawable.common_white_btn_bg);
+                waitaoTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                changkuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                qunziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                maoziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                duanxiuTextView.setTextColor(getResources().getColor(R.color.title_bg_color));
+                waitaoTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                changkuTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                qunziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                maoziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.waitaoTextView:
-
+                duanxiuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                waitaoTextView.setBackgroundResource(R.drawable.common_white_btn_bg);
+                changkuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                qunziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                maoziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                duanxiuTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                waitaoTextView.setTextColor(getResources().getColor(R.color.title_bg_color));
+                changkuTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                qunziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                maoziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.changkuTextView:
-
+                duanxiuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                waitaoTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                changkuTextView.setBackgroundResource(R.drawable.common_white_btn_bg);
+                qunziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                maoziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                duanxiuTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                waitaoTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                changkuTextView.setTextColor(getResources().getColor(R.color.title_bg_color));
+                qunziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                maoziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.qunziTextView:
-
+                duanxiuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                waitaoTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                changkuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                qunziTextView.setBackgroundResource(R.drawable.common_white_btn_bg);
+                maoziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                duanxiuTextView.setTextColor(getResources().getColor(R.color.color_white));
+                waitaoTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                changkuTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                qunziTextView.setTextColor(getResources().getColor(R.color.title_bg_color));
+                maoziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
                 break;
             case R.id.maoziTextView:
-
+                duanxiuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                waitaoTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                changkuTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                qunziTextView.setBackgroundResource(R.drawable.common_blue_btn_bg);
+                maoziTextView.setBackgroundResource(R.drawable.common_white_btn_bg);
+                duanxiuTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                waitaoTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                changkuTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                qunziTextView.setTextColor(getResources().getColor(R.color.colorWhite));
+                maoziTextView.setTextColor(getResources().getColor(R.color.title_bg_color));
                 break;
         }
     }
