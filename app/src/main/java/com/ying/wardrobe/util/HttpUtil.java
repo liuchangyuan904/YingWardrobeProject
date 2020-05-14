@@ -11,4 +11,5 @@ public class HttpUtil {
     public static final String Get_Yifu_Weather = HOST + "api/yifu/weather";
     public static final String Get_Yifu_History = HOST + "api/yifu/history";
     public static final String Get_Yifu_AddDaily = HOST + "api/yifu/addDaily";
+    public static final String Get_Yifu_Stat = HOST + "api/yifu/stat";
          }

@@ -25,6 +25,7 @@ import com.ying.wardrobe.R;
 import com.ying.wardrobe.entity.UserEntity;
 import com.ying.wardrobe.util.Constant;
 import com.ying.wardrobe.util.HttpUtil;
+import com.ying.wardrobe.view.CommonDialog;
 import com.ying.wardrobe.view.CommonHead;
 
 import org.json.JSONException;
@@ -53,7 +54,7 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
     private String filePath;
     private String selectType;
     private EditText priceEditText,styleEditText;
-
+    CommonDialog commonDialog;
     @Override
     protected int initLayout() {
         return R.layout.activity_add_clothes;
@@ -61,6 +62,7 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initView() {
+        commonDialog=new CommonDialog(this);
         selectType = getIntent().getStringExtra("selectType");
         addClothesTextView = findViewById(R.id.addClothesTextView);
         confirmTextView = findViewById(R.id.confirmTextView);
@@ -103,6 +105,11 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
             Toast.makeText(AddClothesActivity.this, "请先选择衣服！", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (commonDialog.isShowing()){
+            return;
+        }else {
+            commonDialog.show();
+        }
         final String host = HttpUtil.UpdateFile;
         System.out.println(host);
         System.out.println(filePath);
@@ -123,6 +130,7 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onSucceed(int what, Response<JSONObject> response) {
+                commonDialog.dismiss();
                 Log.d(TAG, "onSucceed: " + response.get().toString());
                 try {
                     JSONObject jsonObject = new JSONObject(response.get().toString());
@@ -136,6 +144,7 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onFailed(int what, Response<JSONObject> response) {
+                commonDialog.dismiss();
                 System.out.println(response.get());
                 System.out.println(response);
 //                Toast.makeText(MainActivity.this, response.get().toString(), Toast.LENGTH_LONG).show();

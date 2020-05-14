@@ -35,6 +35,7 @@ import com.ying.wardrobe.entity.ClothesEntity;
 import com.ying.wardrobe.entity.WeatherEntity;
 import com.ying.wardrobe.util.Constant;
 import com.ying.wardrobe.util.HttpUtil;
+import com.ying.wardrobe.view.CommonDialog;
 import com.ying.wardrobe.view.CommonHead;
 
 import org.json.JSONException;
@@ -59,7 +60,7 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
     private String provider;
     private Location currentlocation;
     private String yifuId;
-
+    CommonDialog commonDialog;
     @Override
     protected int initLayout() {
         return R.layout.activity_add_diary;
@@ -67,6 +68,7 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initView() {
+        commonDialog=new CommonDialog(this);
         title_bar = findViewById(R.id.title_bar);
         title_bar.setLeftClick(new CommonHead.CommonHeadLeftClick() {
             @Override
@@ -116,6 +118,11 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void getWearDiary() {
+        if (commonDialog.isShowing()){
+            return;
+        }else {
+            commonDialog.show();
+        }
         RequestQueue queue = NoHttp.newRequestQueue();
         //2.创建消息请求   参数1:String字符串,传网址  参数2:请求方式
         final Request<JSONObject> request = NoHttp.createJsonObjectRequest(HttpUtil.Get_Yifu_Weather, RequestMethod.POST);
@@ -130,6 +137,7 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onSucceed(int what, Response<JSONObject> response) {
+                commonDialog.dismiss();
                 Log.d(TAG, "onSucceed: " + response.get().toString());
                 JSONObject jsonObject = response.get();
                 try {
@@ -148,7 +156,7 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onFailed(int what, Response<JSONObject> response) {
-
+                commonDialog.dismiss();
             }
 
             @Override
@@ -177,6 +185,11 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void uploadDiary() {
+        if (commonDialog.isShowing()){
+            return;
+        }else {
+            commonDialog.show();
+        }
         RequestQueue queue = NoHttp.newRequestQueue();
         //2.创建消息请求   参数1:String字符串,传网址  参数2:请求方式
         final Request<JSONObject> request = NoHttp.createJsonObjectRequest(HttpUtil.Get_Yifu_AddDaily , RequestMethod.POST);
@@ -192,6 +205,7 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onSucceed(int what, Response<JSONObject> response) {
+                commonDialog.dismiss();
                 Log.d(TAG, "onSucceed: 获取衣服列表：  " + response.get().toString());
                 JSONObject jsonObject = response.get();
                 try {
@@ -209,6 +223,7 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onFailed(int what, Response<JSONObject> response) {
                 Log.d(TAG, "onFailed: ");
+                commonDialog.dismiss();
             }
 
             @Override

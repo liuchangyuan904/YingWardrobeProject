@@ -39,7 +39,6 @@
                 android:id="@+id/nickNameEditText"
                 android:layout_width="0dp"
                 android:textSize="14sp"
-                android:inputType="number"
                 android:layout_height="match_parent"
                 android:hint="请输入用户名"
                 android:layout_weight="1"/>

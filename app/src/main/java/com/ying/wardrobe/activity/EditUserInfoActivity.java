@@ -17,6 +17,7 @@ import com.ying.wardrobe.BaseActivity;
 import com.ying.wardrobe.R;
 import com.ying.wardrobe.util.Constant;
 import com.ying.wardrobe.util.HttpUtil;
+import com.ying.wardrobe.view.CommonDialog;
 import com.ying.wardrobe.view.CommonHead;
 
 import org.json.JSONException;
@@ -39,6 +40,7 @@ public class EditUserInfoActivity extends BaseActivity {
     private EditText ageEditText,heightEditText,weightEditText,nickNameEditText;
     private TextView uploadTextView;
     private CommonHead title_bar;
+    CommonDialog commonDialog;
     @Override
     protected int initLayout() {
         return R.layout.activity_edit_info;
@@ -46,6 +48,7 @@ public class EditUserInfoActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        commonDialog=new CommonDialog(this);
         ageEditText=findViewById(R.id.ageEditText);
         heightEditText=findViewById(R.id.heightEditText);
         weightEditText=findViewById(R.id.weightEditText);
@@ -73,6 +76,11 @@ public class EditUserInfoActivity extends BaseActivity {
     }
 
     private void uploadInfo() {
+        if (commonDialog.isShowing()){
+            return;
+        }else {
+            commonDialog.show();
+        }
         RequestQueue queue = NoHttp.newRequestQueue();
         //2.创建消息请求   参数1:String字符串,传网址  参数2:请求方式
         final Request<JSONObject> request = NoHttp.createJsonObjectRequest(HttpUtil.UpdateUser, RequestMethod.POST);
@@ -95,6 +103,7 @@ public class EditUserInfoActivity extends BaseActivity {
 
             @Override
             public void onSucceed(int what, Response<JSONObject> response) {
+                commonDialog.dismiss();
                 Log.d(TAG, "onSucceed: "+response.get().toString());
                 JSONObject jsonObject=response.get();
                 try {
@@ -111,7 +120,7 @@ public class EditUserInfoActivity extends BaseActivity {
 
             @Override
             public void onFailed(int what, Response<JSONObject> response) {
-
+                commonDialog.dismiss();
             }
 
             @Override
