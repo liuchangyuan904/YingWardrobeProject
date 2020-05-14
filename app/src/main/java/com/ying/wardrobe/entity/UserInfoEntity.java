@@ -72,6 +72,24 @@ public class UserInfoEntity {
         private Object age;
         private Object weight;
         private Object tall;
+        private Object yaowei;
+        private Object jiankuan;
+
+        public Object getYaowei() {
+            return yaowei;
+        }
+
+        public void setYaowei(Object yaowei) {
+            this.yaowei = yaowei;
+        }
+
+        public Object getJiankuan() {
+            return jiankuan;
+        }
+
+        public void setJiankuan(Object jiankuan) {
+            this.jiankuan = jiankuan;
+        }
 
         public String getId() {
             return id;

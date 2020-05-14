@@ -53,7 +53,7 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
     private CommonHead title_bar;
     private String filePath;
     private String selectType;
-    private EditText priceEditText,styleEditText;
+    private EditText priceEditText,styleEditText,seasonEditText;
     CommonDialog commonDialog;
     @Override
     protected int initLayout() {
@@ -66,6 +66,7 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
         selectType = getIntent().getStringExtra("selectType");
         addClothesTextView = findViewById(R.id.addClothesTextView);
         confirmTextView = findViewById(R.id.confirmTextView);
+        seasonEditText = findViewById(R.id.seasonEditText);
         priceEditText = findViewById(R.id.priceEditText);
         styleEditText = findViewById(R.id.styleEditText);
         selectImage = findViewById(R.id.selectImage);
@@ -170,6 +171,7 @@ public class AddClothesActivity extends BaseActivity implements View.OnClickList
         request.add("photo", imageUrl);
         request.add("price", priceEditText.getText().toString().trim());
         request.add("style", styleEditText.getText().toString().trim());
+        request.add("jijie", seasonEditText.getText().toString().trim());
 
         queue.add(1, request, new OnResponseListener<JSONObject>() {
             @Override

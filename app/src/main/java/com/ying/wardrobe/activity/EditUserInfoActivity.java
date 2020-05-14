@@ -37,7 +37,7 @@ import org.json.JSONObject;
  */
 public class EditUserInfoActivity extends BaseActivity {
     private static final String TAG = "EditUserInfoActivity";
-    private EditText ageEditText,heightEditText,weightEditText,nickNameEditText;
+    private EditText ageEditText,heightEditText,weightEditText,nickNameEditText,jiankuanEditText,yaoweiEditText;
     private TextView uploadTextView;
     private CommonHead title_bar;
     CommonDialog commonDialog;
@@ -54,6 +54,8 @@ public class EditUserInfoActivity extends BaseActivity {
         weightEditText=findViewById(R.id.weightEditText);
         nickNameEditText=findViewById(R.id.nickNameEditText);
         uploadTextView=findViewById(R.id.uploadTextView);
+        jiankuanEditText=findViewById(R.id.jiankuanEditText);
+        yaoweiEditText=findViewById(R.id.yaoweiEditText);
         title_bar=findViewById(R.id.title_bar);
         uploadTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +63,10 @@ public class EditUserInfoActivity extends BaseActivity {
                 if (TextUtils.isEmpty(ageEditText.getText().toString().trim())||
                         TextUtils.isEmpty(heightEditText.getText().toString().trim())||
                         TextUtils.isEmpty(nickNameEditText.getText().toString().trim())||
+                        TextUtils.isEmpty(jiankuanEditText.getText().toString().trim())||
+                        TextUtils.isEmpty(yaoweiEditText.getText().toString().trim())||
                         TextUtils.isEmpty(weightEditText.getText().toString().trim())){
-                    Toast.makeText(EditUserInfoActivity.this,"用户名/年龄/身高/体重都要输入哦！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditUserInfoActivity.this,"用户名/年龄/身高/体重/腰围/肩宽都要输入哦！",Toast.LENGTH_SHORT).show();
                 }
                 uploadInfo();
             }
@@ -94,6 +98,8 @@ public class EditUserInfoActivity extends BaseActivity {
         request.add("age", ageEditText.getText().toString().trim());
         request.add("weight", weightEditText.getText().toString().trim());
         request.add("tall", heightEditText.getText().toString().trim());
+        request.add("jiankuan", jiankuanEditText.getText().toString().trim());
+        request.add("yaowei", yaoweiEditText.getText().toString().trim());
 
         queue.add(1, request, new OnResponseListener<JSONObject>() {
             @Override

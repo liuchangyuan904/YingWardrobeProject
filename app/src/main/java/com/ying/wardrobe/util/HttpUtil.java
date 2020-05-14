@@ -12,4 +12,5 @@ public class HttpUtil {
     public static final String Get_Yifu_History = HOST + "api/yifu/history";
     public static final String Get_Yifu_AddDaily = HOST + "api/yifu/addDaily";
     public static final String Get_Yifu_Stat = HOST + "api/yifu/stat";
+    public static final String Get_Yifu_Delete = HOST + "api/yifu/deleteYifu";
          }

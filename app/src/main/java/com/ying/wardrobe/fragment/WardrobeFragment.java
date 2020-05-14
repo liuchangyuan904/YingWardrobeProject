@@ -28,6 +28,7 @@ import com.ying.wardrobe.activity.EditUserInfoActivity;
 import com.ying.wardrobe.entity.ClothesEntity;
 import com.ying.wardrobe.util.Constant;
 import com.ying.wardrobe.util.HttpUtil;
+import com.ying.wardrobe.view.CommonAlterDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,6 +89,7 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
         //3.利用队列去添加消息请求
         //使用request对象添加上传的对象添加键与值,post方式添加上传的数据
         request.add("type", type);
+        request.add("userId", Constant.currentUserEntity.getData().getId());
         queue.add(1, request, new OnResponseListener<JSONObject>() {
             @Override
             public void onStart(int what) {
@@ -231,7 +233,7 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public View getView(final int i, View view, ViewGroup viewGroup) {
             ViewHolder viewHolder = null;
             if (view == null) {
                 viewHolder = new ViewHolder();
@@ -240,19 +242,82 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
                 viewHolder.yifuImageView = view.findViewById(R.id.yifuImageView);
                 viewHolder.priceTextView = view.findViewById(R.id.priceTextView);
                 viewHolder.styleTextView = view.findViewById(R.id.styleTextView);
+                viewHolder.seasonTextView = view.findViewById(R.id.seasonTextView);
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
             Glide.with(getActivity()).load(clothesEntity.getData().get(i).getPhoto()).into(viewHolder.yifuImageView);
             viewHolder.priceTextView.setText("价格：￥" + clothesEntity.getData().get(i).getPrice());
-            viewHolder.styleTextView.setText("价格：￥" + clothesEntity.getData().get(i).getStyle());
+            viewHolder.styleTextView.setText("风格：" + clothesEntity.getData().get(i).getStyle());
+            viewHolder.yifuImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final CommonAlterDialog suredialog = new CommonAlterDialog(getActivity());
+                    suredialog.setMessage("确认删除该衣物么？")
+                            .setTitle("提示")
+//                .setTitle("系统提示")
+                            .setSingle(false).setOnClickBottomListener(new CommonAlterDialog.OnClickBottomListener() {
+                        @Override
+                        public void onPositiveClick() {
+                            deleteImage(clothesEntity.getData().get(i).getId());
+                            suredialog.dismiss();
+                        }
+
+                        @Override
+                        public void onNegtiveClick() {
+                            suredialog.dismiss();
+                        }
+                    });
+                    suredialog.show();
+                }
+            });
+            viewHolder.seasonTextView.setText("季节：" + clothesEntity.getData().get(i).getJijie());
             return view;
         }
 
         class ViewHolder {
             TextView priceTextView;
             TextView styleTextView;
+            TextView seasonTextView;
             ImageView yifuImageView;
         }
+    }
+
+    private void deleteImage(String id) {
+        RequestQueue queue = NoHttp.newRequestQueue();
+        //2.创建消息请求   参数1:String字符串,传网址  参数2:请求方式
+        final Request<JSONObject> request = NoHttp.createJsonObjectRequest(HttpUtil.Get_Yifu_Delete, RequestMethod.POST);
+        //3.利用队列去添加消息请求
+        //使用request对象添加上传的对象添加键与值,post方式添加上传的数据
+        request.add("yifuId", id);
+        queue.add(1, request, new OnResponseListener<JSONObject>() {
+            @Override
+            public void onStart(int what) {
+
+            }
+
+            @Override
+            public void onSucceed(int what, Response<JSONObject> response) {
+                JSONObject jsonObject=response.get();
+                try {
+                    if (jsonObject.getInt("status")==0){
+                        Toast.makeText(getActivity(), "衣服已成功删除！", Toast.LENGTH_SHORT).show();
+                        getClothes(selectType);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailed(int what, Response<JSONObject> response) {
+
+            }
+
+            @Override
+            public void onFinish(int what) {
+
+            }
+        });
     }
 }

@@ -58,6 +58,15 @@ public class ClothesEntity {
         private int price;
         private String style;
         private String userId;
+        private String jijie;
+
+        public String getJijie() {
+            return jijie;
+        }
+
+        public void setJijie(String jijie) {
+            this.jijie = jijie;
+        }
 
         public String getId() {
             return id;

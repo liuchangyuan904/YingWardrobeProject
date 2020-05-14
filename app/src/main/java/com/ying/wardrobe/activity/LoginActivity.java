@@ -95,12 +95,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         Constant.currentUserEntity = gson.fromJson(res.toString(), UserEntity.class);
                         if (isLogin) {
                             Toast.makeText(getApplicationContext(), "欢迎登录：" + username, Toast.LENGTH_SHORT).show();
+                            //跳转到商品购买页面
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), "成功注册用户：" + username, Toast.LENGTH_SHORT).show();
                         }
-                        //跳转到商品购买页面
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+
                     } else {
                         Toast.makeText(getApplicationContext(), res.getString("msg"), Toast.LENGTH_SHORT).show();
                     }
@@ -127,10 +128,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             case R.id.registerTextView:
                 if (TextUtils.isEmpty(userEditText.getText().toString().trim()) || TextUtils.isEmpty(passwordEditText.getText().toString().trim())) {
                     Toast.makeText(this, "账号密码不要忘记输入哦！", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 tryToRegister(userEditText.getText().toString().trim(), passwordEditText.getText().toString().trim(), false);
                 break;
             case R.id.loginTextView:
+                if (TextUtils.isEmpty(userEditText.getText().toString().trim()) || TextUtils.isEmpty(passwordEditText.getText().toString().trim())) {
+                    Toast.makeText(this, "账号密码不要忘记输入哦！", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 tryToRegister(userEditText.getText().toString().trim(), passwordEditText.getText().toString().trim(), true);
                 break;
         }

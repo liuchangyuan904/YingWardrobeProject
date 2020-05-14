@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 public class MineFragment extends BaseFragment implements View.OnClickListener{
     private static final String TAG = "MineFragment";
-    private TextView userNameTextView,ageTextView,heightTextView,weightTextView,editTextView;
+    private TextView userNameTextView,ageTextView,heightTextView,weightTextView,editTextView,jiankuanTextView,yaoweiTextView;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_mine;
@@ -38,6 +38,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         heightTextView=view.findViewById(R.id.heightTextView);
         weightTextView=view.findViewById(R.id.weightTextView);
         editTextView=view.findViewById(R.id.editTextView);
+        yaoweiTextView=view.findViewById(R.id.yaoweiTextView);
+        jiankuanTextView=view.findViewById(R.id.jiankuanTextView);
         ageTextView.setOnClickListener(this);
         heightTextView.setOnClickListener(this);
         weightTextView.setOnClickListener(this);
@@ -87,6 +89,16 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                     weightTextView.setText("");
                 }else {
                     weightTextView.setText("体重："+userInfoEntity.getData().getWeight().toString());
+                }
+                if (userInfoEntity.getData().getJiankuan()==null){
+                    jiankuanTextView.setText("");
+                }else {
+                    jiankuanTextView.setText("肩宽："+userInfoEntity.getData().getJiankuan().toString());
+                }
+                if (userInfoEntity.getData().getYaowei()==null){
+                    yaoweiTextView.setText("");
+                }else {
+                    yaoweiTextView.setText("腰围："+userInfoEntity.getData().getYaowei().toString());
                 }
                 userNameTextView.setText("用户名："+userInfoEntity.getData().getNickname());
             }
