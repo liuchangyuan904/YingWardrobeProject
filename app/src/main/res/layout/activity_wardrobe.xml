@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.ying.wardrobe.view.CommonHead
+        android:id="@+id/title_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/title_bg_color"
+        android:paddingTop="@dimen/dp_30"
+        app:leftImg="@mipmap/icon_backarrow"
+        app:mid_txt="衣橱"
+        app:mid_txt_color="@color/colorWhite"
+        app:show_left="true"></com.ying.wardrobe.view.CommonHead>
+
+    <LinearLayout
+        android:id="@+id/layout_left"
+        android:layout_width="@dimen/dp_90"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_bar"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/duanxiuTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/common_white_btn_bg"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="短袖"
+            android:textColor="@color/title_bg_color"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/changkuTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/common_blue_btn_bg"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="长裤"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/waitaoTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/common_blue_btn_bg"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="外套"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/qunziTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/common_blue_btn_bg"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="裙子"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/maoziTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/common_blue_btn_bg"
+            android:paddingLeft="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_10"
+            android:text="帽子"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/title_bar"
+        android:layout_toRightOf="@+id/layout_left">
+        <ListView
+            android:id="@+id/listView"
+            android:scrollbars="none"
+            android:listSelector="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+    </LinearLayout>
+</RelativeLayout>

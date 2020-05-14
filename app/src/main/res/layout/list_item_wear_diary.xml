@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent">
+
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dp_10"
+            android:text="2020年3月23日" />
+
+        <TextView
+            android:padding="@dimen/dp_10"
+            android:id="@+id/leibieTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dateTextView"
+            android:text="类别：帽子" />
+
+        <LinearLayout
+            android:layout_below="@+id/leibieTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:padding="@dimen/dp_10"
+                android:id="@+id/yifuTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/dateTextView"
+                android:text="衣物：" />
+            <ImageView
+                android:layout_marginTop="@dimen/dp_10"
+                android:id="@+id/yifuImageView"
+                android:layout_width="120dp"
+                android:scaleType="fitXY"
+                android:layout_height="@dimen/dp_120"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

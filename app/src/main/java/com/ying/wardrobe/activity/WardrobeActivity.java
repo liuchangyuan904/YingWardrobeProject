@@ -1,7 +1,7 @@
-package com.ying.wardrobe.fragment;
+package com.ying.wardrobe.activity;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,35 +14,37 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.wildma.pictureselector.PictureSelector;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.OnResponseListener;
 import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
 import com.yanzhenjie.nohttp.rest.Response;
-import com.ying.wardrobe.BaseFragment;
+import com.ying.wardrobe.BaseActivity;
 import com.ying.wardrobe.R;
-import com.ying.wardrobe.activity.AddClothesActivity;
-import com.ying.wardrobe.activity.EditUserInfoActivity;
 import com.ying.wardrobe.entity.ClothesEntity;
-import com.ying.wardrobe.util.Constant;
+import com.ying.wardrobe.fragment.WardrobeFragment;
 import com.ying.wardrobe.util.HttpUtil;
+import com.ying.wardrobe.view.CommonHead;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-public class WardrobeFragment extends BaseFragment implements View.OnClickListener {
-    private static final String TAG = "WardrobeFragment";
-    private TextView addYifu;
+/**
+ * @ProjectName: WardrobeProject
+ * @Package: com.ying.wardrobe.activity
+ * @ClassName: WardrobeActivity
+ * @Description: java类作用描述
+ * @Author: liucy
+ * @CreateDate: 2020/5/14 0014 上午 10:38
+ * @UpdateUser: 更新者：
+ * @UpdateDate: 2020/5/14 0014 上午 10:38
+ * @UpdateRemark: 更新说明：
+ * @Version: 1.0
+ */
+public class WardrobeActivity extends BaseActivity implements View.OnClickListener {
+    private static final String TAG = "WardrobeActivity";
+    private CommonHead title_bar;
     private ListView listView;
     private WardrobeListAdapter listAdapter;
     private TextView duanxiuTextView;
@@ -55,20 +57,25 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
     private ClothesEntity clothesEntity;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_wardrobe;
+    protected int initLayout() {
+        return R.layout.activity_wardrobe;
     }
 
     @Override
-    protected void initView(View view, Bundle savedInstanceState) {
-        addYifu = view.findViewById(R.id.addYifu);
-        duanxiuTextView = view.findViewById(R.id.duanxiuTextView);
-        waitaoTextView = view.findViewById(R.id.waitaoTextView);
-        changkuTextView = view.findViewById(R.id.changkuTextView);
-        qunziTextView = view.findViewById(R.id.qunziTextView);
-        maoziTextView = view.findViewById(R.id.maoziTextView);
-        listView = view.findViewById(R.id.listView);
-        addYifu.setOnClickListener(this);
+    protected void initView() {
+        title_bar = findViewById(R.id.title_bar);
+        title_bar.setLeftClick(new CommonHead.CommonHeadLeftClick() {
+            @Override
+            public void LeftClick() {
+                WardrobeActivity.this.finish();
+            }
+        });
+        duanxiuTextView = findViewById(R.id.duanxiuTextView);
+        waitaoTextView = findViewById(R.id.waitaoTextView);
+        changkuTextView = findViewById(R.id.changkuTextView);
+        qunziTextView = findViewById(R.id.qunziTextView);
+        maoziTextView = findViewById(R.id.maoziTextView);
+        listView = findViewById(R.id.listView);
         duanxiuTextView.setOnClickListener(this);
         waitaoTextView.setOnClickListener(this);
         changkuTextView.setOnClickListener(this);
@@ -81,59 +88,15 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
         listAdapter = new WardrobeListAdapter();
     }
 
-    private void getClothes(String type) {
-        RequestQueue queue = NoHttp.newRequestQueue();
-        //2.创建消息请求   参数1:String字符串,传网址  参数2:请求方式
-        final Request<JSONObject> request = NoHttp.createJsonObjectRequest(HttpUtil.Get_Yifu_LIST + "/" + selectType, RequestMethod.POST);
-        //3.利用队列去添加消息请求
-        //使用request对象添加上传的对象添加键与值,post方式添加上传的数据
-        request.add("type", type);
-        queue.add(1, request, new OnResponseListener<JSONObject>() {
-            @Override
-            public void onStart(int what) {
-
-            }
-
-            @Override
-            public void onSucceed(int what, Response<JSONObject> response) {
-                Log.d(TAG, "onSucceed: 获取衣服列表：  " + response.get().toString());
-                JSONObject jsonObject = response.get();
-                try {
-                    if (jsonObject.getInt("status") == 0) {
-                        Gson gson = new Gson();
-                        clothesEntity = gson.fromJson(response.get().toString(), ClothesEntity.class);
-                        listView.setAdapter(listAdapter);
-                        listAdapter.notifyDataSetChanged();
-                    } else {
-                        Toast.makeText(getActivity(), "用户信息更新失败，请稍后再试！", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailed(int what, Response<JSONObject> response) {
-                Log.d(TAG, "onFailed: ");
-            }
-
-            @Override
-            public void onFinish(int what) {
-
-            }
-        });
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getClothes(selectType);
     }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.addYifu:
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), AddClothesActivity.class);
-                intent.putExtra("selectType", selectType);
-                startActivity(intent);
-                break;
             case R.id.duanxiuTextView:
                 selectType = "duanxiu";
                 getClothes(selectType);
@@ -206,13 +169,48 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
                 break;
         }
     }
+    private void getClothes(String type) {
+        RequestQueue queue = NoHttp.newRequestQueue();
+        //2.创建消息请求   参数1:String字符串,传网址  参数2:请求方式
+        final Request<JSONObject> request = NoHttp.createJsonObjectRequest(HttpUtil.Get_Yifu_LIST + "/" + selectType, RequestMethod.POST);
+        //3.利用队列去添加消息请求
+        //使用request对象添加上传的对象添加键与值,post方式添加上传的数据
+        request.add("type", type);
+        queue.add(1, request, new OnResponseListener<JSONObject>() {
+            @Override
+            public void onStart(int what) {
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getClothes(selectType);
+            }
+
+            @Override
+            public void onSucceed(int what, Response<JSONObject> response) {
+                Log.d(TAG, "onSucceed: 获取衣服列表：  " + response.get().toString());
+                JSONObject jsonObject = response.get();
+                try {
+                    if (jsonObject.getInt("status") == 0) {
+                        Gson gson = new Gson();
+                        clothesEntity = gson.fromJson(response.get().toString(), ClothesEntity.class);
+                        listView.setAdapter(listAdapter);
+                        listAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(WardrobeActivity.this, "获取衣橱列表失败，请稍后再试！", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailed(int what, Response<JSONObject> response) {
+                Log.d(TAG, "onFailed: ");
+            }
+
+            @Override
+            public void onFinish(int what) {
+
+            }
+        });
     }
-
     class WardrobeListAdapter extends BaseAdapter {
 
         @Override
@@ -231,11 +229,11 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
+        public View getView(final int i, View view, ViewGroup viewGroup) {
             ViewHolder viewHolder = null;
             if (view == null) {
                 viewHolder = new ViewHolder();
-                view = LayoutInflater.from(getActivity()).inflate(R.layout.list_item_wardrobe, null, false);
+                view = LayoutInflater.from(WardrobeActivity.this).inflate(R.layout.list_item_wardrobe, null, false);
                 view.setTag(viewHolder);
                 viewHolder.yifuImageView = view.findViewById(R.id.yifuImageView);
                 viewHolder.priceTextView = view.findViewById(R.id.priceTextView);
@@ -243,9 +241,19 @@ public class WardrobeFragment extends BaseFragment implements View.OnClickListen
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
-            Glide.with(getActivity()).load(clothesEntity.getData().get(i).getPhoto()).into(viewHolder.yifuImageView);
+            Glide.with(WardrobeActivity.this).load(clothesEntity.getData().get(i).getPhoto()).into(viewHolder.yifuImageView);
             viewHolder.priceTextView.setText("价格：￥" + clothesEntity.getData().get(i).getPrice());
             viewHolder.styleTextView.setText("价格：￥" + clothesEntity.getData().get(i).getStyle());
+            viewHolder.yifuImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent();
+                    intent.putExtra("yifuId",clothesEntity.getData().get(i).getId());
+                    intent.putExtra("yifuUrl",clothesEntity.getData().get(i).getPhoto());
+                    setResult(Activity.RESULT_OK,intent);
+                    finish();
+                }
+            });
             return view;
         }
 
