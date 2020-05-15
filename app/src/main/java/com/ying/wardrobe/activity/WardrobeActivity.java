@@ -24,6 +24,7 @@ import com.ying.wardrobe.BaseActivity;
 import com.ying.wardrobe.R;
 import com.ying.wardrobe.entity.ClothesEntity;
 import com.ying.wardrobe.fragment.WardrobeFragment;
+import com.ying.wardrobe.util.Constant;
 import com.ying.wardrobe.util.HttpUtil;
 import com.ying.wardrobe.view.CommonHead;
 
@@ -176,6 +177,7 @@ public class WardrobeActivity extends BaseActivity implements View.OnClickListen
         //3.利用队列去添加消息请求
         //使用request对象添加上传的对象添加键与值,post方式添加上传的数据
         request.add("type", type);
+        request.add("userId", Constant.currentUserEntity.getData().getId());
         queue.add(1, request, new OnResponseListener<JSONObject>() {
             @Override
             public void onStart(int what) {
@@ -238,12 +240,14 @@ public class WardrobeActivity extends BaseActivity implements View.OnClickListen
                 viewHolder.yifuImageView = view.findViewById(R.id.yifuImageView);
                 viewHolder.priceTextView = view.findViewById(R.id.priceTextView);
                 viewHolder.styleTextView = view.findViewById(R.id.styleTextView);
+                viewHolder.seasonTextView = view.findViewById(R.id.seasonTextView);
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
             Glide.with(WardrobeActivity.this).load(clothesEntity.getData().get(i).getPhoto()).into(viewHolder.yifuImageView);
             viewHolder.priceTextView.setText("价格：￥" + clothesEntity.getData().get(i).getPrice());
-            viewHolder.styleTextView.setText("价格：￥" + clothesEntity.getData().get(i).getStyle());
+            viewHolder.styleTextView.setText("风格：" + clothesEntity.getData().get(i).getStyle());
+            viewHolder.seasonTextView.setText("季节：" + clothesEntity.getData().get(i).getJijie());
             viewHolder.yifuImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -260,6 +264,7 @@ public class WardrobeActivity extends BaseActivity implements View.OnClickListen
         class ViewHolder {
             TextView priceTextView;
             TextView styleTextView;
+            TextView seasonTextView;
             ImageView yifuImageView;
         }
     }
