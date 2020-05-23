@@ -118,6 +118,9 @@ public class AddDiaryActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void getWearDiary() {
+        if (currentlocation==null){
+            return;
+        }
         if (commonDialog.isShowing()){
             return;
         }else {

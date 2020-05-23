@@ -156,7 +156,7 @@ public class WearDiaryFragment extends BaseFragment implements View.OnClickListe
             } else {
                 viewHolder = (ViewHolder) view.getTag();
             }
-            viewHolder.dateTextView.setText(wearDiaryEntity.getData().get(i).get(i).getDate());
+            viewHolder.dateTextView.setText(wearDiaryEntity.getData().get(i).get(0).getDate());
             viewHolder.leibieTextView.setText(getLeibie(wearDiaryEntity.getData().get(i)));
             GridViewAdapter gridViewAdapter = new GridViewAdapter(getPhotoUrls(wearDiaryEntity.getData().get(i)));
             viewHolder.gridView.setAdapter(gridViewAdapter);
